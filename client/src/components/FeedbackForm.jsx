@@ -1,13 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
 function FeedbackForm({ onFeedbackSent }) {
   const [feedback, setFeedback] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async () => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/feedback`, { feedback });
+      await axios.post(`${API_BASE}/api/feedback`, { feedback });
       setSubmitted(true);
       setFeedback("");
       if (typeof onFeedbackSent === "function") {
